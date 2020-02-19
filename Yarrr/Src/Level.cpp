@@ -12,9 +12,6 @@
 GameObject* ship3;
 GameObject* ship4;
 
-
-//ObjManager* OM1;
-
 //////////////////////////////////////////////
 
 
