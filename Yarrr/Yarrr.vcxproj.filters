@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="assets">
+      <UniqueIdentifier>{5b65c95e-a2b2-4288-94d1-fb4371a7f434}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\MainEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\TextureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\MainMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\WindowRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\StateManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ObjManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Dungeon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\TextureManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ECS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\MainMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\WindowRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\StateManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\GameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ObjManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Dungeon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\Char1_32x32.png">
+      <Filter>assets</Filter>
+    </Image>
+    <Image Include="assets\Ship1_32x32.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\BlackTile_32x32.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\WhiteTile_32x32.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\YellowTile_32x32.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Button1_64x64.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Button2_64x64.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Button1_64x32.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Button2_64x32.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\GreenTile_32x32.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\GreyTile_32x32.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\LightBlueTile_32x32.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\Font\OpenSans-Bold.ttf" />
+    <Font Include="assets\Font\OpenSans-BoldItalic.ttf" />
+    <Font Include="assets\Font\OpenSans-ExtraBold.ttf" />
+    <Font Include="assets\Font\OpenSans-ExtraBoldItalic.ttf" />
+    <Font Include="assets\Font\OpenSans-Italic.ttf" />
+    <Font Include="assets\Font\OpenSans-Light.ttf" />
+    <Font Include="assets\Font\OpenSans-LightItalic.ttf" />
+    <Font Include="assets\Font\OpenSans-Regular.ttf" />
+    <Font Include="assets\Font\OpenSans-Semibold.ttf" />
+    <Font Include="assets\Font\OpenSans-SemiboldItalic.ttf" />
+  </ItemGroup>
+</Project>
