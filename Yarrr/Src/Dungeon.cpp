@@ -12,7 +12,7 @@ Dungeon::Dungeon()
 	curr_level = 0;
 }
 
-// Deconstructor
+// Deconstructor  
 Dungeon::~Dungeon()
 {
 }

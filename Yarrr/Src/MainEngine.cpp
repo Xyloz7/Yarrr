@@ -48,8 +48,7 @@ int main(int argc, char *args[]) {
 	Menu1->init();
 
 	// Create new game and initialise it
-	//shipgame = new ShipGame();
-	//shipgame->init();
+	
 
 	level1 = new Level();
 	level1->init();
