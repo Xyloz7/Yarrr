@@ -117,8 +117,8 @@ void Level::handleEvents() {
 			yposnext = 0;
 		}
 
-		cout << LevelMap->mapMatrix.size() << "|" << xposnext << endl;
-		cout << LevelMap->mapMatrix[1].size() << "|" << yposnext << endl;
+		//cout << LevelMap->mapMatrix.size() << "|" << xposnext << endl;
+		//cout << LevelMap->mapMatrix[1].size() << "|" << yposnext << endl;
 
 		// Checking if move takes char outside of map range
 		if (xposnext >= LevelMap->mapMatrix.size()-1) {

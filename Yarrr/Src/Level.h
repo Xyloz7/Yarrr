@@ -37,6 +37,7 @@ protected:
 	Map* LevelMap;
 	ObjManager* OM;
 
+
 private:
 
 };

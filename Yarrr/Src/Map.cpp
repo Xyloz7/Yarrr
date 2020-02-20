@@ -9,14 +9,14 @@ vector<vector<int> > lvl1_vect = {
 	{ 2,1,0,1,0,1,2,1,0,1, 2 },
 	{ 2,0,1,0,1,0,1,0,1,0,2 },
 	{ 2,1,0,1,0,1,0,1,0,1,2 },
-	{ 2,0,1,0,1,0,1,0,1,0,2 },
+	{ 2,0,3,0,1,0,1,0,1,0,2 },
 	{ 2,1,0,1,0,1,0,1,0,1,2 },
 	{ 2,0,1,0,1,0,1,0,1,0,2 },
 	{ 0,1,0,1,0,1,0,1,0,1,2 },
 	{ 1,0,1,0,1,0,2,0,1,0,2 },
 	{ 0,1,0,1,0,1,0,1,0,1,2 },
 	{ 1,0,1,0,1,0,1,0,1,0,2 },
-	{ 0,1,0,1,0,1,0,1,0,1,2 },
+	{ 0,1,0,1,0,1,0,4,0,1,2 },
 	{ 1,0,1,0,1,0,1,0,1,0,2 },
 	{ 0,1,0,1,0,1,0,1,0,1,2 },
 	{ 1,0,1,0,1,0,1,0,1,0,2 },
@@ -29,6 +29,9 @@ Map::Map() {
 	yellow = TextureManager::LoadTexture("assets/YellowTile_32x32.png");
 	white = TextureManager::LoadTexture("assets/WhiteTile_32x32.png");
 	grey = TextureManager::LoadTexture("assets/GreyTile_32x32.png");
+	green = TextureManager::LoadTexture("assets/GreenTile_32x32.png");
+	blue = TextureManager::LoadTexture("assets/LightBlueTile_32x32.png");
+
 
 	// Load default Map
 	LoadMap(lvl1_vect);
@@ -89,6 +92,12 @@ void Map::DrawMap()
 				break;
 			case 2:
 				TextureManager::Draw(grey, src, dest);
+				break;
+			case 3:
+				TextureManager::Draw(green, src, dest);
+				break;
+			case 4:
+				TextureManager::Draw(blue, src, dest);
 				break;
 			default:
 				break;

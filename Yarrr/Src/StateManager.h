@@ -7,7 +7,7 @@
 
 
 // StateManager is used to store "global" state variable enum and change between menus, games etc.
-
+// OBSOLETE
 
 class StateManager
 {

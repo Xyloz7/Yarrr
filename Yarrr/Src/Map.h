@@ -28,6 +28,8 @@ private:
 	SDL_Texture* yellow;
 	SDL_Texture* white;
 	SDL_Texture* grey;
+	SDL_Texture* green;
+	SDL_Texture* blue;
 
 
 };

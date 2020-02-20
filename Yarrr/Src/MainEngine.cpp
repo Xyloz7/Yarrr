@@ -1,3 +1,4 @@
+#include "Dungeon.h"
 #include "Level.h"
 #include "MainMenu.h"
 #include "StateManager.h"
@@ -16,15 +17,15 @@ Uint32 frameStart;
 int frameTime;
 
 // Game declaration
-//ShipGame *shipgame = nullptr;
 MainMenu *Menu1 = nullptr;
+Dungeon* dungeon1 = nullptr;
 Level *level1 = nullptr;
 
 // Window 
 WindowRenderer *WR;
 
 // States
-StateManager *SM;
+//StateManager *SM;
 
 // State Variable - 0 = menu, 1 = game, 2 = Level
 int StateVar = 0;
@@ -40,18 +41,20 @@ int main(int argc, char *args[]) {
 	WR->WindowRendererInit("Yarr", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, false);
 
 	// Create and initialise State Manager
-	SM = new StateManager();
-	SM->StateManagerInit();
+	//SM = new StateManager();
+	//SM->StateManagerInit();
 
 	// Create Main Menu and initialise
 	Menu1 = new MainMenu();
 	Menu1->init();
 
 	// Create new game and initialise it
-	
+	dungeon1 = new Dungeon;
 
 	level1 = new Level();
 	level1->init();
+
+	dungeon1->AddLevel(level1);
 
 	while (StateVar>=0) {
 		switch (StateVar) {
@@ -59,7 +62,8 @@ int main(int argc, char *args[]) {
 			Menu1->play(FPS, frameDelay, frameStart, frameTime);
 			break;
 		case 1:
-			level1->play(FPS, frameDelay, frameStart, frameTime);
+			dungeon1->DungeonLevels[dungeon1->curr_level]->play(FPS, frameDelay, frameStart, frameTime);
+
 			break;
 		case 2:
 			level1->play(FPS, frameDelay, frameStart, frameTime);
