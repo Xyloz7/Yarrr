@@ -31,8 +31,8 @@ void GameState::play(int FPS, int frameDelay, Uint32 frameStart, int frameTime) 
 	isRunning = true;
 	while (isRunning) {
 		frameStart = SDL_GetTicks();
+		handleEvents(); 
 		update();
-		handleEvents();
 		render();
 
 		frameTime = SDL_GetTicks() - frameStart; // Time to handle events, update and render

@@ -9,7 +9,7 @@
 
 //////////////////////////////////////////////
 // Constants and initialising//
-GameObject* ship3;
+
 GameObject* ship4;
 
 //////////////////////////////////////////////
@@ -28,9 +28,9 @@ Level::~Level()
 
 
 // Initialise the Level
-void Level::init() {
+void Level::init(GameObject* PC) {
 	LevelID = 0;
-	ship3 = new GameObject("assets/Char1_32x32.png", 1, 1);
+
 	ship4 = new GameObject("assets/Ship1_32x32.png", 2, 2);
 	//char1 = new GameObject("assets/Char1_32x32.png", 3 * TILESIZE, 0);
 	LevelMap = new Map();
@@ -38,8 +38,9 @@ void Level::init() {
 	OM = new ObjManager();
 
 	//cout << OM1->LevelObjects.size() << endl;
+
+	OM->AddObj(PC);
 	OM->AddObj(ship4);
-	OM->AddObj(ship3);
 
 	/*cout << "Message 1" << endl;
 	cout << ship4->xpos << endl;
@@ -77,25 +78,25 @@ void Level::handleEvents() {
 			// Arrow Key Movement
 		case SDLK_RIGHT:
 			// Get next pos
-			xposnext = ship3->xpos + 1;
-			yposnext = ship3->ypos;
+			xposnext = OM->LevelObjects[0]->xpos + 1;
+			yposnext = OM->LevelObjects[0]->ypos;
 			break;
 		case SDLK_LEFT:
 			// Get next pos
-			xposnext = ship3->xpos - 1;
-			yposnext = ship3->ypos;
+			xposnext = OM->LevelObjects[0]->xpos - 1;
+			yposnext = OM->LevelObjects[0]->ypos;
 			break;
 		case SDLK_DOWN:
 
 			// Get next pos
-			xposnext = ship3->xpos;
-			yposnext = ship3->ypos + 1;
+			xposnext = OM->LevelObjects[0]->xpos;
+			yposnext = OM->LevelObjects[0]->ypos + 1;
 			break;
 		case SDLK_UP:
 
 			// Get next pos
-			xposnext = ship3->xpos;
-			yposnext = ship3->ypos - 1;
+			xposnext = OM->LevelObjects[0]->xpos;
+			yposnext = OM->LevelObjects[0]->ypos - 1;
 			break;
 
 			// default do nothing
@@ -117,7 +118,7 @@ void Level::handleEvents() {
 			yposnext = 0;
 		}
 
-		//cout << LevelMap->mapMatrix.size() << "|" << xposnext << endl;
+		cout << OM->LevelObjects[0]->xpos << "|" << OM->LevelObjects[0]->ypos << endl;
 		//cout << LevelMap->mapMatrix[1].size() << "|" << yposnext << endl;
 
 		// Checking if move takes char outside of map range
@@ -146,7 +147,7 @@ void Level::handleEvents() {
 		if(canMove){
 
 			cout << "move detected" << endl;
-			ship3->MoveObj(xposnext-ship3->xpos, yposnext - ship3->ypos);
+			OM->LevelObjects[0]->MoveObj(xposnext-OM->LevelObjects[0]->xpos, yposnext - OM->LevelObjects[0]->ypos);
 		}
 
 
@@ -175,6 +176,7 @@ void Level::render() {
 	SDL_RenderClear(WindowRenderer::renderer);
 
 	// Stuff painted first goes to background, then after adds to foreground
+	
 	LevelMap->DrawMap();
 
 	for (size_t i = 0; i < OM->LevelObjects.size(); i++) {

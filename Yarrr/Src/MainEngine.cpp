@@ -1,5 +1,4 @@
 #include "Dungeon.h"
-#include "Level.h"
 #include "MainMenu.h"
 #include "StateManager.h"
 
@@ -21,6 +20,7 @@ MainMenu *Menu1 = nullptr;
 Dungeon* dungeon1 = nullptr;
 Level *level1 = nullptr;
 Level *level2 = nullptr;
+GameObject *PC1 = nullptr;
 
 vector<vector<int> > lvl2_vect = {
 	{ 2,1,0,1,0,1,2,1,0,1, 2 },
@@ -50,9 +50,8 @@ int main(int argc, char *args[]) {
 	WR = new WindowRenderer();
 	WR->WindowRendererInit("Yarr", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, false);
 
-	// Create and initialise State Manager
-	//SM = new StateManager();
-	//SM->StateManagerInit();
+	// Create Player
+	PC1 = new GameObject("assets/Char1_32x32.png", 1, 1);
 
 	// Create Main Menu and initialise
 	Menu1 = new MainMenu();
@@ -62,10 +61,10 @@ int main(int argc, char *args[]) {
 	dungeon1 = new Dungeon;
 
 	level1 = new Level();
-	level1->init();
+	level1->init(PC1);
 
 	level2 = new Level();
-	level2->init();
+	level2->init(PC1);
 	level2->LevelMap->LoadMap(lvl2_vect);
 
 	dungeon1->AddLevel(level1);
@@ -73,6 +72,7 @@ int main(int argc, char *args[]) {
 
 	int curr = 0;
 	while (StateVar>=0) {
+		
 		switch (StateVar) {
 		case 0:
 			Menu1->play(FPS, frameDelay, frameStart, frameTime);
@@ -83,7 +83,6 @@ int main(int argc, char *args[]) {
 		case 2:
 			curr = dungeon1->curr_level;
 			dungeon1->DungeonLevels[curr]->play(FPS, frameDelay, frameStart, frameTime);
-
 			break;
 		case 3:
 			return 0; 

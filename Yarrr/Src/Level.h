@@ -26,7 +26,7 @@ public:
 	~Level();
 
 	// Initialise
-	void init();
+	void init(GameObject* PC);
 	void handleEvents();
 
 	//void play(int FPS, int frameDelay, Uint32 frameStart, int frameTime);
