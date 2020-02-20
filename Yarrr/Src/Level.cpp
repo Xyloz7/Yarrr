@@ -39,13 +39,12 @@ void Level::init(GameObject* PC) {
 
 	//cout << OM1->LevelObjects.size() << endl;
 
+	// PC always placed as first item in Object Manager
+	// TODO - rework function to ensure that it is first
+	// i.e. use emplace or something
 	OM->AddObj(PC);
 	OM->AddObj(ship4);
 
-	/*cout << "Message 1" << endl;
-	cout << ship4->xpos << endl;
-	cout << OM1->LevelObjects[0]->xpos << endl;
-	*/
 }
 
 
@@ -143,6 +142,7 @@ void Level::handleEvents() {
 			canMove = false;
 		}
 		
+
 		// If the move is valid, then move
 		if(canMove){
 
@@ -150,6 +150,11 @@ void Level::handleEvents() {
 			OM->LevelObjects[0]->MoveObj(xposnext-OM->LevelObjects[0]->xpos, yposnext - OM->LevelObjects[0]->ypos);
 		}
 
+		// If the move took us onto an exit, move to next lvl 
+		if (LevelMap->mapMatrix[xposnext][yposnext] == 3) {
+			cout << "Next lvl case entered" << endl;
+			isRunning = false;
+		}
 
 	}
 

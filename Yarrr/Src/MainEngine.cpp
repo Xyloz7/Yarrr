@@ -20,12 +20,23 @@ MainMenu *Menu1 = nullptr;
 Dungeon* dungeon1 = nullptr;
 Level *level1 = nullptr;
 Level *level2 = nullptr;
+Level *level3 = nullptr;
+
 GameObject *PC1 = nullptr;
 
 vector<vector<int> > lvl2_vect = {
 	{ 2,1,0,1,0,1,2,1,0,1, 2 },
 	{ 2,0,1,0,1,0,1,0,1,0,2 },
 	{ 2,1,0,1,0,1,0,1,0,1,2 },
+	{ 2,0,3,0,1,0,1,0,1,0,2 },
+	{ 2,1,0,1,0,1,0,1,0,1,2 },
+	{ 2,0,1,0,1,0,1,0,1,0,2 }
+};
+
+vector<vector<int> > lvl3_vect = {
+	{ 2,1,1,1,1,1,2,1,1,1, 2 },
+	{ 2,1,1,1,1,1,1,1,1,1,2 },
+	{ 2,1,1,1,1,1,0,1,0,1,2 },
 	{ 2,0,3,0,1,0,1,0,1,0,2 },
 	{ 2,1,0,1,0,1,0,1,0,1,2 },
 	{ 2,0,1,0,1,0,1,0,1,0,2 }
@@ -67,8 +78,13 @@ int main(int argc, char *args[]) {
 	level2->init(PC1);
 	level2->LevelMap->LoadMap(lvl2_vect);
 
+	level3 = new Level();
+	level3->init(PC1);
+	level3->LevelMap->LoadMap(lvl3_vect);
+
 	dungeon1->AddLevel(level1);
 	dungeon1->AddLevel(level2);
+	dungeon1->AddLevel(level3);
 
 	int curr = 0;
 	while (StateVar>=0) {
@@ -81,8 +97,16 @@ int main(int argc, char *args[]) {
 			level1->play(FPS, frameDelay, frameStart, frameTime);
 			break;
 		case 2:
-			curr = dungeon1->curr_level;
-			dungeon1->DungeonLevels[curr]->play(FPS, frameDelay, frameStart, frameTime);
+
+			if (curr < dungeon1->DungeonLevels.size()) {
+				dungeon1->DungeonLevels[curr]->play(FPS, frameDelay, frameStart, frameTime);
+				curr += 1;
+			}
+			else { 
+				StateVar = 0;
+				curr = 0;
+			}
+
 			break;
 		case 3:
 			return 0; 

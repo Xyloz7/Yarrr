@@ -6,8 +6,6 @@
 const int ButtonNo = 3;
 
 //Map* map2;
-Button* button1;
-Button* button2;
 Button* ButtonArr[ButtonNo];
 
 
@@ -73,10 +71,6 @@ void MainMenu::handleEvents() {
 			break;
 
 		case SDLK_SPACE:
-			// Go to ShipGame gamestate if space is pressed
-			// StateVar = 1;
-			//ButtonArr[CurrButton]->ChangeGameState();
-			//isRunning = false;
 			break;
 
 			// Arrow Key Movement
@@ -119,7 +113,6 @@ void MainMenu::handleEvents() {
 
 		case SDLK_RETURN:
 			// Enter changes GameState based on button and closes mainmenu
-			//std::cout << "Enter recognised" << std::endl;
 			ButtonArr[CurrButton]->ChangeGameState();
 			isRunning = false;
 			break;
