@@ -26,6 +26,11 @@ Level::~Level()
 {
 }
 
+void Level::ChangeSpawn(int Sx, int Sy) {
+	spawnX = Sx;
+	spawnY = Sy;
+
+}
 
 // Initialise the Level
 void Level::init(GameObject* PC) {
@@ -45,11 +50,22 @@ void Level::init(GameObject* PC) {
 	OM->AddObj(PC);
 	OM->AddObj(ship4);
 
+	spawnX = 0;
+	spawnY = 0;
+
 }
 
 
 // Event Handler
 void Level::handleEvents() {
+
+	if (OM->LevelObjects[0]->xpos == -1 && OM->LevelObjects[0]->ypos == -1) {
+		OM->LevelObjects[0]->xpos = spawnX;
+		OM->LevelObjects[0]->ypos = spawnY;
+
+	}
+
+
 	SDL_Event e;
 	SDL_PollEvent(&e);
 
@@ -153,6 +169,9 @@ void Level::handleEvents() {
 		// If the move took us onto an exit, move to next lvl 
 		if (LevelMap->mapMatrix[xposnext][yposnext] == 3) {
 			cout << "Next lvl case entered" << endl;
+			OM->LevelObjects[0]->xpos = -1;
+			OM->LevelObjects[0]->ypos = -1;
+
 			isRunning = false;
 		}
 

@@ -33,9 +33,13 @@ public:
 	void update();
 	void render();
 
+	// Changes the spawn in co-ord
+	void ChangeSpawn(int Sx, int Sy);
+
 	Map* LevelMap;
 protected:
-
+	int spawnX;
+	int spawnY;
 	ObjManager* OM;
 	int LevelID;
 
