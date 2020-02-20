@@ -20,6 +20,16 @@ int frameTime;
 MainMenu *Menu1 = nullptr;
 Dungeon* dungeon1 = nullptr;
 Level *level1 = nullptr;
+Level *level2 = nullptr;
+
+vector<vector<int> > lvl2_vect = {
+	{ 2,1,0,1,0,1,2,1,0,1, 2 },
+	{ 2,0,1,0,1,0,1,0,1,0,2 },
+	{ 2,1,0,1,0,1,0,1,0,1,2 },
+	{ 2,0,3,0,1,0,1,0,1,0,2 },
+	{ 2,1,0,1,0,1,0,1,0,1,2 },
+	{ 2,0,1,0,1,0,1,0,1,0,2 }
+};
 
 // Window 
 WindowRenderer *WR;
@@ -54,19 +64,26 @@ int main(int argc, char *args[]) {
 	level1 = new Level();
 	level1->init();
 
-	dungeon1->AddLevel(level1);
+	level2 = new Level();
+	level2->init();
+	level2->LevelMap->LoadMap(lvl2_vect);
 
+	dungeon1->AddLevel(level1);
+	dungeon1->AddLevel(level2);
+
+	int curr = 0;
 	while (StateVar>=0) {
 		switch (StateVar) {
 		case 0:
 			Menu1->play(FPS, frameDelay, frameStart, frameTime);
 			break;
 		case 1:
-			dungeon1->DungeonLevels[dungeon1->curr_level]->play(FPS, frameDelay, frameStart, frameTime);
-
+			level1->play(FPS, frameDelay, frameStart, frameTime);
 			break;
 		case 2:
-			level1->play(FPS, frameDelay, frameStart, frameTime);
+			curr = dungeon1->curr_level;
+			dungeon1->DungeonLevels[curr]->play(FPS, frameDelay, frameStart, frameTime);
+
 			break;
 		case 3:
 			return 0; 

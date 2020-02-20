@@ -40,7 +40,7 @@ public:
 	//static SDL_Renderer *renderer;
 
 protected:
-	bool isRunning = true;
+	bool isRunning = false;
 private:
 
 

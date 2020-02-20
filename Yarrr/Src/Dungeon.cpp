@@ -9,7 +9,7 @@
 // Constructor
 Dungeon::Dungeon()
 {
-	curr_level = 0;
+	curr_level = 1;
 }
 
 // Deconstructor  
@@ -30,3 +30,7 @@ void Dungeon::RemoveLevel(int pos) {
 
 }
 
+int Dungeon::get_curr_level() {
+	// Use erase to delete at specified position
+	return curr_level;
+}

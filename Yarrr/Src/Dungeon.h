@@ -17,8 +17,8 @@ public:
 
 	vector<Level* >DungeonLevels;
 
+	int get_curr_level();
 	int curr_level;
-
 protected:
 
 

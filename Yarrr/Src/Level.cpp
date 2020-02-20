@@ -29,7 +29,7 @@ Level::~Level()
 
 // Initialise the Level
 void Level::init() {
-
+	LevelID = 0;
 	ship3 = new GameObject("assets/Char1_32x32.png", 1, 1);
 	ship4 = new GameObject("assets/Ship1_32x32.png", 2, 2);
 	//char1 = new GameObject("assets/Char1_32x32.png", 3 * TILESIZE, 0);
@@ -144,8 +144,12 @@ void Level::handleEvents() {
 		
 		// If the move is valid, then move
 		if(canMove){
+
+			cout << "move detected" << endl;
 			ship3->MoveObj(xposnext-ship3->xpos, yposnext - ship3->ypos);
 		}
+
+
 	}
 
 
@@ -156,7 +160,6 @@ void Level::handleEvents() {
 
 //
 void Level::update() {
-
 
 	for (size_t i = 0; i < OM->LevelObjects.size(); i++) {
 		OM->LevelObjects[i]->Update();
@@ -185,5 +188,4 @@ void Level::render() {
 
 
 }
-
 

@@ -33,10 +33,11 @@ public:
 	void update();
 	void render();
 
-protected:
 	Map* LevelMap;
-	ObjManager* OM;
+protected:
 
+	ObjManager* OM;
+	int LevelID;
 
 private:
 
