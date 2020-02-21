@@ -131,6 +131,7 @@
     <ClCompile Include="Src\GameState.cpp" />
     <ClCompile Include="Src\StateManager.cpp" />
     <ClCompile Include="Src\TextureManager.cpp" />
+    <ClCompile Include="Src\Unit.cpp" />
     <ClCompile Include="Src\WindowRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +146,7 @@
     <ClInclude Include="Src\ObjManager.h" />
     <ClInclude Include="Src\StateManager.h" />
     <ClInclude Include="Src\TextureManager.h" />
+    <ClInclude Include="Src\Unit.h" />
     <ClInclude Include="Src\WindowRenderer.h" />
   </ItemGroup>
   <ItemGroup>
