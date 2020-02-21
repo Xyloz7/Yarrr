@@ -9,6 +9,7 @@
 #include "GameObject.h"
 #include "GameState.h"
 #include "ObjManager.h"
+#include "UnitManager.h"
 #include "Map.h"
 
 
@@ -26,7 +27,7 @@ public:
 	~Level();
 
 	// Initialise
-	void init(GameObject* PC);
+	void init(Unit* PC);
 	void handleEvents();
 
 	//void play(int FPS, int frameDelay, Uint32 frameStart, int frameTime);
@@ -41,6 +42,7 @@ protected:
 	int spawnX;
 	int spawnY;
 	ObjManager* OM;
+	UnitManager* UM;
 	int LevelID;
 
 private:

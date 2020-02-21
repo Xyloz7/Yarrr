@@ -1,6 +1,7 @@
 #include "Dungeon.h"
 #include "MainMenu.h"
 #include "StateManager.h"
+#include "Unit.h"
 
 
 // CONSTANTS //
@@ -22,7 +23,7 @@ Level *level1 = nullptr;
 Level *level2 = nullptr;
 Level *level3 = nullptr;
 
-GameObject *PC1 = nullptr;
+Unit *PC1 = nullptr;
 
 vector<vector<int> > lvl2_vect = {
 	{ 2,1,0,1,0,1,2,1,0,1, 2 },
@@ -62,7 +63,8 @@ int main(int argc, char *args[]) {
 	WR->WindowRendererInit("Yarr", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, false);
 
 	// Create Player
-	PC1 = new GameObject("assets/Char1_32x32.png", 1, 1);
+	PC1 = new Unit("assets/Char1_32x32.png", 1, 1);
+	PC1->StatInit();
 
 	// Create Main Menu and initialise
 	Menu1 = new MainMenu();
@@ -110,7 +112,6 @@ int main(int argc, char *args[]) {
 			// Run Curr_level, if accessible
 			if (curr < dungeon1->DungeonLevels.size()) {
 				dungeon1->DungeonLevels[curr]->play(FPS, frameDelay, frameStart, frameTime);
-			
 			// Upon exiting the level, increase counter to go
 			// to next lvl
 				curr += 1;

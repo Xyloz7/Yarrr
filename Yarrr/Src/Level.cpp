@@ -1,5 +1,6 @@
 #include "Level.h"
 #include "ObjManager.h"
+#include "Unit.h"
 #include "GameState.h"
 #include "Map.h"
 #include "TextureManager.h"
@@ -10,7 +11,7 @@
 //////////////////////////////////////////////
 // Constants and initialising//
 
-GameObject* ship4;
+Unit* ship4;
 
 //////////////////////////////////////////////
 
@@ -33,22 +34,23 @@ void Level::ChangeSpawn(int Sx, int Sy) {
 }
 
 // Initialise the Level
-void Level::init(GameObject* PC) {
+void Level::init(Unit* PC) {
 	LevelID = 0;
 
-	ship4 = new GameObject("assets/Ship1_32x32.png", 2, 2);
+	ship4 = new Unit("assets/Ship1_32x32.png", 2, 2);
+	ship4->StatInit();
 	//char1 = new GameObject("assets/Char1_32x32.png", 3 * TILESIZE, 0);
 	LevelMap = new Map();
 	//map3 = new Map();
-	OM = new ObjManager();
+	UM = new UnitManager();
 
-	//cout << OM1->LevelObjects.size() << endl;
+	//cout << UM1->LevelObjects.size() << endl;
 
 	// PC always placed as first item in Object Manager
 	// TODO - rework function to ensure that it is first
 	// i.e. use emplace or something
-	OM->AddObj(PC);
-	OM->AddObj(ship4);
+	UM->AddUnit(PC);
+	UM->AddUnit(ship4);
 
 	spawnX = 0;
 	spawnY = 0;
@@ -59,9 +61,9 @@ void Level::init(GameObject* PC) {
 // Event Handler
 void Level::handleEvents() {
 
-	if (OM->LevelObjects[0]->xpos == -1 && OM->LevelObjects[0]->ypos == -1) {
-		OM->LevelObjects[0]->xpos = spawnX;
-		OM->LevelObjects[0]->ypos = spawnY;
+	if (UM->LevelUnits[0]->xpos == -1 && UM->LevelUnits[0]->ypos == -1) {
+		UM->LevelUnits[0]->xpos = spawnX;
+		UM->LevelUnits[0]->ypos = spawnY;
 
 	}
 
@@ -93,25 +95,25 @@ void Level::handleEvents() {
 			// Arrow Key Movement
 		case SDLK_RIGHT:
 			// Get next pos
-			xposnext = OM->LevelObjects[0]->xpos + 1;
-			yposnext = OM->LevelObjects[0]->ypos;
+			xposnext = UM->LevelUnits[0]->xpos + 1;
+			yposnext = UM->LevelUnits[0]->ypos;
 			break;
 		case SDLK_LEFT:
 			// Get next pos
-			xposnext = OM->LevelObjects[0]->xpos - 1;
-			yposnext = OM->LevelObjects[0]->ypos;
+			xposnext = UM->LevelUnits[0]->xpos - 1;
+			yposnext = UM->LevelUnits[0]->ypos;
 			break;
 		case SDLK_DOWN:
 
 			// Get next pos
-			xposnext = OM->LevelObjects[0]->xpos;
-			yposnext = OM->LevelObjects[0]->ypos + 1;
+			xposnext = UM->LevelUnits[0]->xpos;
+			yposnext = UM->LevelUnits[0]->ypos + 1;
 			break;
 		case SDLK_UP:
 
 			// Get next pos
-			xposnext = OM->LevelObjects[0]->xpos;
-			yposnext = OM->LevelObjects[0]->ypos - 1;
+			xposnext = UM->LevelUnits[0]->xpos;
+			yposnext = UM->LevelUnits[0]->ypos - 1;
 			break;
 
 			// default do nothing
@@ -133,7 +135,7 @@ void Level::handleEvents() {
 			yposnext = 0;
 		}
 
-		cout << OM->LevelObjects[0]->xpos << "|" << OM->LevelObjects[0]->ypos << endl;
+		//cout << UM->LevelUnits[0]->xpos << "|" << UM->LevelUnits[0]->ypos << endl;
 		//cout << LevelMap->mapMatrix[1].size() << "|" << yposnext << endl;
 
 		// Checking if move takes char outside of map range
@@ -145,10 +147,10 @@ void Level::handleEvents() {
 		}
 
 		// Check for Game obj collisions
-		for (size_t i = 0; i < OM->LevelObjects.size(); i++) {
-			int xtemp = OM->LevelObjects[i]->xpos;
-			int ytemp = OM->LevelObjects[i]->ypos;
-			if (xposnext==xtemp && yposnext==ytemp && OM->LevelObjects[i]->canWalk==false) {
+		for (size_t i = 0; i < UM->LevelUnits.size(); i++) {
+			int xtemp = UM->LevelUnits[i]->xpos;
+			int ytemp = UM->LevelUnits[i]->ypos;
+			if (xposnext==xtemp && yposnext==ytemp && UM->LevelUnits[i]->canWalk==false) {
 				canMove = false;
 			}
 		}
@@ -163,14 +165,15 @@ void Level::handleEvents() {
 		if(canMove){
 
 			cout << "move detected" << endl;
-			OM->LevelObjects[0]->MoveObj(xposnext-OM->LevelObjects[0]->xpos, yposnext - OM->LevelObjects[0]->ypos);
+			UM->LevelUnits[0]->MoveObj(xposnext-UM->LevelUnits[0]->xpos, yposnext - UM->LevelUnits[0]->ypos);
 		}
 
 		// If the move took us onto an exit, move to next lvl 
 		if (LevelMap->mapMatrix[xposnext][yposnext] == 3) {
 			cout << "Next lvl case entered" << endl;
-			OM->LevelObjects[0]->xpos = -1;
-			OM->LevelObjects[0]->ypos = -1;
+			UM->LevelUnits[0]->xpos = -1;
+			UM->LevelUnits[0]->ypos = -1;
+			//UM->LevelUnits[0]->loseHP(1);
 
 			isRunning = false;
 		}
@@ -186,8 +189,8 @@ void Level::handleEvents() {
 //
 void Level::update() {
 
-	for (size_t i = 0; i < OM->LevelObjects.size(); i++) {
-		OM->LevelObjects[i]->Update();
+	for (size_t i = 0; i < UM->LevelUnits.size(); i++) {
+		UM->LevelUnits[i]->Update();
 	}
 
 }
@@ -203,9 +206,13 @@ void Level::render() {
 	
 	LevelMap->DrawMap();
 
-	for (size_t i = 0; i < OM->LevelObjects.size(); i++) {
-		OM->LevelObjects[i]->Render();
+	for (size_t i = 0; i < UM->LevelUnits.size(); i++) {
+		UM->LevelUnits[i]->Render();
+		UM->LevelUnits[i]->showHP();
 	}
+
+	// Draw HP of player
+	//OM->LevelObjects[0]->showHP();
 
 	// Show the rendered image
 	SDL_RenderPresent(WindowRenderer::renderer);

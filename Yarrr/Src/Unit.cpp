@@ -33,26 +33,40 @@ Unit::Unit(const char* texturesheet, int x, int y)
 
 void Unit::StatInit() {
 	maxHP = 10;
-	curr_HP = maxHP;
+	curr_HP = maxHP-2;
 	ATK = 6;
 	DEF = 5;
 }
 
 void Unit::showHP() {
-	SDL_Texture* HPTexture = TextureManager::LoadTexture("assets/GreenTile_32x32.png");
-	SDL_Rect HPsrc, HPdest;
+
+	SDL_Texture* HPTexture = TextureManager::LoadTexture("assets/RedTile_32x32.png");
+	SDL_Texture* currHPTexture = TextureManager::LoadTexture("assets/GreenTile_32x32.png");
+
+	SDL_Rect HPsrc, HPdest, currHPdest;
 	// Source Rectangle
 	HPsrc.h = 32;
 	HPsrc.w = 32;
 	HPsrc.x = 0;
 	HPsrc.y = 0;
 
-	// Destination Rectangle
-	
-	HPdest.h = 5;
-	HPdest.w = maxHP;
-	HPdest.x = xpos;
-	HPdest.y = ypos;
+	// max HP
+	HPdest.h = 10;
+	HPdest.w = TILESIZE;
+	HPdest.x = xpos*TILESIZE;
+	HPdest.y = ypos*TILESIZE - TILESIZE/3;
 	SDL_RenderCopy(WindowRenderer::renderer, HPTexture, &HPsrc, &HPdest);
 
+	// current HP
+	currHPdest.h = 10;
+	currHPdest.w = (TILESIZE*curr_HP) / maxHP;
+	currHPdest.x = xpos*TILESIZE;
+	currHPdest.y = ypos*TILESIZE - TILESIZE / 3;
+	SDL_RenderCopy(WindowRenderer::renderer, currHPTexture, &HPsrc, &currHPdest);
+
+
+}
+
+void Unit::loseHP(int damage) {
+	curr_HP -= damage;
 }

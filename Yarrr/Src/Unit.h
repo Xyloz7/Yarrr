@@ -14,8 +14,7 @@ public:
 
 	// Function to set stats
 	void StatInit();
-
-
+	void loseHP(int damage);
 	// Function to display HP bar
 	void showHP();
 
