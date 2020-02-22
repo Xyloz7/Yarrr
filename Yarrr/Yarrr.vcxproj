@@ -161,6 +161,7 @@
     <Image Include="assets\GreenTile_32x32.png" />
     <Image Include="assets\GreyTile_32x32.png" />
     <Image Include="assets\LightBlueTile_32x32.png" />
+    <Image Include="assets\RedTile_32x32.png" />
     <Image Include="assets\Ship1_32x32.png" />
     <Image Include="assets\WhiteTile_32x32.png" />
     <Image Include="assets\YellowTile_32x32.png" />

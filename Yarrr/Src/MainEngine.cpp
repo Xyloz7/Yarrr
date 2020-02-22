@@ -108,6 +108,7 @@ int main(int argc, char *args[]) {
 
 		// Case 2 = Dungeon
 		case 2:
+
 			// Curr_level starts at 0. 
 			// Run Curr_level, if accessible
 			if (curr < dungeon1->DungeonLevels.size()) {
@@ -122,6 +123,7 @@ int main(int argc, char *args[]) {
 			else { 
 				StateVar = 0;
 				curr = 0;
+				PC1->StatInit();
 			}
 
 			break;

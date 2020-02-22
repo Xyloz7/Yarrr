@@ -142,6 +142,9 @@
     <Image Include="assets\LightBlueTile_32x32.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="assets\RedTile_32x32.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\Font\OpenSans-Bold.ttf" />

@@ -32,7 +32,7 @@ Unit::Unit(const char* texturesheet, int x, int y)
 }
 
 void Unit::StatInit() {
-	maxHP = 10;
+	maxHP = 30;
 	curr_HP = maxHP-2;
 	ATK = 6;
 	DEF = 5;

@@ -173,7 +173,7 @@ void Level::handleEvents() {
 			cout << "Next lvl case entered" << endl;
 			UM->LevelUnits[0]->xpos = -1;
 			UM->LevelUnits[0]->ypos = -1;
-			//UM->LevelUnits[0]->loseHP(1);
+			UM->LevelUnits[0]->loseHP(1);
 
 			isRunning = false;
 		}
