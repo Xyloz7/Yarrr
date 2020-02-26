@@ -29,6 +29,10 @@ Unit::Unit(const char* texturesheet, int x, int y)
 	destRect.w = TILESIZE;
 
 	canWalk = false;
+	
+	// Default Weapon
+	UnitWeapon = new Weapon();
+
 }
 
 void Unit::StatInit() {

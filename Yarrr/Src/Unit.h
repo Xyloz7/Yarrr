@@ -1,5 +1,8 @@
 #pragma once
 #include "GameObject.h"
+// FORWARD DECLARATION, circular includes
+class Weapon;
+#include "Weapon.h"
 
 // Unit class for players/enemies
 
@@ -17,7 +20,7 @@ public:
 	void loseHP(int damage);
 	// Function to display HP bar
 	void showHP();
-
+	Weapon* UnitWeapon;
 protected:
 	// Units have stats i.e. health, mana etc
 	int maxHP;

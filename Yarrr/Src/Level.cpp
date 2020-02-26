@@ -92,6 +92,10 @@ void Level::handleEvents() {
 			break;
 
 
+		case SDLK_1:
+			UM->LevelUnits[0]->UnitWeapon->PrimaryAttack(0, LevelMap, UM);
+			break;
+
 			// Arrow Key Movement
 		case SDLK_RIGHT:
 			// Get next pos

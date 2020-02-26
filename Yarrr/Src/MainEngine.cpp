@@ -2,6 +2,7 @@
 #include "MainMenu.h"
 #include "StateManager.h"
 #include "Unit.h"
+#include "Weapon.h"
 
 
 // CONSTANTS //
