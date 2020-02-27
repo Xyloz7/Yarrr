@@ -21,7 +21,8 @@ void Weapon::render()
 
 void Weapon::PrimaryAttack(int PlayerIndex, Map *lvlMap, UnitManager *U)
 {
-	int x, y, count, TargetIndex, ATK, DEF, DMG;
+	int x, y, TargetIndex, ATK, DEF, DMG, adjtiles_index;
+	bool ConfirmATK = false;
 
 	// Adjacent tiles
 	vector<int > adjtiles{ 0, 0, 0, 0 };
@@ -58,18 +59,38 @@ void Weapon::PrimaryAttack(int PlayerIndex, Map *lvlMap, UnitManager *U)
 		}
 ////////////////////////////////////////////////////////////////////////
 		// Choose unit to attack
-		count = 0;
+
+
+		/*cout << "Pre Delete : ";
 		for (size_t i = 0; i < adjtiles.size(); i++) {
-			if (adjtiles[i] > 0) {
-				count += 1;
+			cout << adjtiles[i] << " ";
+		}
+		cout << endl;*/
+
+		for (size_t i = adjtiles.size()-1; i > 0;  i--) {
+
+
+			if (adjtiles[i] == 0) {
+				adjtiles.erase(adjtiles.begin() + i);
 			}
 		}
 
+		if (adjtiles[0] == 0) {
+			adjtiles.erase(adjtiles.begin());
+		}
+
+		/*cout << "Post Delete : ";
+		for (size_t i = 0; i < adjtiles.size(); i++) {
+			cout << adjtiles[i] << " ";
+		}
+		cout << endl;*/
+
+		
 		// Only Attack if there is at least one valid target
-		if (count > 0) {
+		if (adjtiles.size() > 0) {
 
 			// If only one target, attack it
-			if (count == 1) {
+			if (adjtiles.size() == 1) {
 				TargetIndex = 0;
 				// Find target index
 				for (size_t i = 0; i < adjtiles.size(); i++) {
@@ -79,9 +100,36 @@ void Weapon::PrimaryAttack(int PlayerIndex, Map *lvlMap, UnitManager *U)
 			}
 
 			// If multiple possible, select desired target
-			else if (count > 1) {
+			else if (adjtiles.size() > 1) {
 				// Selection process
 				cout << "Multiple Targets, please select one" << endl;
+				
+				// Default selection
+				adjtiles_index = 0;
+				TargetIndex = adjtiles[adjtiles_index];
+
+				cout << "Currently selecting" << adjtiles[adjtiles_index] << endl;
+
+				while (!ConfirmATK) {
+
+					SDL_Event e;
+					SDL_PollEvent(&e);
+					if (e.type == SDL_KEYDOWN) {
+
+						switch (e.key.keysym.sym) {
+							// Arrow Key Movement
+						case SDLK_RIGHT:
+							adjtiles_index += 1;
+							adjtiles_index = adjtiles_index%adjtiles.size();
+							TargetIndex = adjtiles[adjtiles_index];
+							cout << "Currently selecting" << adjtiles[adjtiles_index] << endl;
+							break;
+						case SDLK_RETURN:
+							ConfirmATK = true;
+							break;
+						}
+					}
+				}
 
 
 			}

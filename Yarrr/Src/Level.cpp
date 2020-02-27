@@ -12,6 +12,7 @@
 // Constants and initialising//
 
 Unit* ship4;
+Unit* ship5;
 
 //////////////////////////////////////////////
 
@@ -44,6 +45,10 @@ void Level::init(Unit* PC) {
 
 	ship4 = new Unit("assets/Ship1_32x32.png", 2, 2);
 	ship4->StatInit();
+
+
+	ship5 = new Unit("assets/Ship1_32x32.png", 1, 3);
+	ship5->StatInit();
 	//char1 = new GameObject("assets/Char1_32x32.png", 3 * TILESIZE, 0);
 	LevelMap = new Map();
 	//map3 = new Map();
@@ -56,6 +61,7 @@ void Level::init(Unit* PC) {
 	// i.e. use emplace or something
 	UM->AddUnit(PC);
 	UM->AddUnit(ship4);
+	UM->AddUnit(ship5);
 
 	spawnX = 0;
 	spawnY = 0;
@@ -92,6 +98,8 @@ void Level::handleEvents() {
 
 			// Quit if Esc
 		case SDLK_ESCAPE:
+			// CURRENTLY BUGGED, going to main menu and re-entering 
+			// skips the level
 			StateVar = 0;
 			isRunning = false;
 			break;
