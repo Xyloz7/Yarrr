@@ -65,42 +65,56 @@ void Weapon::PrimaryAttack(int PlayerIndex, Map *lvlMap, UnitManager *U)
 			}
 		}
 
+		// Only Attack if there is at least one valid target
+		if (count > 0) {
 
-		if (count == 1) {
-			TargetIndex = 0;
-			// Find target index
-			for (size_t i = 0; i < adjtiles.size(); i++) {
-				TargetIndex += adjtiles[i];
+			// If only one target, attack it
+			if (count == 1) {
+				TargetIndex = 0;
+				// Find target index
+				for (size_t i = 0; i < adjtiles.size(); i++) {
+					TargetIndex += adjtiles[i];
+				}
+
 			}
 
-			// Attack Logic
+			// If multiple possible, select desired target
+			else if (count > 1) {
+				// Selection process
+				cout << "Multiple Targets, please select one" << endl;
 
+
+			}
+
+
+			//////////////////////////////////////////////////////////////////////
+			// Attack Logic
+			//////////////////////////////////////////////////////////////////////
 			// Calculate player attack
 			ATK = U->LevelUnits[PlayerIndex]->ATK;
 			ATK += U->LevelUnits[PlayerIndex]->UnitWeapon->ATK;
 
 			// Calculate target's defense
 			DEF = U->LevelUnits[TargetIndex]->DEF;
-			DEF = U->LevelUnits[TargetIndex]->UnitWeapon->DEF;
+			DEF += U->LevelUnits[TargetIndex]->UnitWeapon->DEF;
 
 			// Calculate damage based off this
 			// TODO - more interesting formula, introduce some randomness
 			DMG = ATK - DEF;
 
-			// losehp
+			// Deal DMG to target
 			U->LevelUnits[TargetIndex]->loseHP(DMG);
+			cout << DMG << " Damage dealt = " << ATK << "-" << DEF << endl;
 
+			//////////////////////////////////////////////////////////////////////
+			// Attack Logic end
+			//////////////////////////////////////////////////////////////////////
 
+		} 
 
-		}
-		else if (count > 1) {
-			// Selection process
 		
-		}
+		//cout << count << endl;
 
-		cout << count << endl;
-
-		// Trigger attack
 
 		break;
 	case Pistol:

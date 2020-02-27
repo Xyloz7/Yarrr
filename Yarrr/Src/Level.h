@@ -36,6 +36,7 @@ public:
 
 	// Changes the spawn in co-ord
 	void ChangeSpawn(int Sx, int Sy);
+	void AddUnit(Unit* U);
 
 	Map* LevelMap;
 protected:

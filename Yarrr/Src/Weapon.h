@@ -22,7 +22,7 @@ public:
 	void render();
 	
 	WeaponType myWeapon;
-
+	SDL_Texture* weaponTexture;
 
 	// Stats provided
 	int ATK, DEF, HP;

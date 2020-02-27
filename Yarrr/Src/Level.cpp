@@ -33,6 +33,11 @@ void Level::ChangeSpawn(int Sx, int Sy) {
 
 }
 
+void Level::AddUnit(Unit* U) {
+	UM->AddUnit(U);
+}
+
+
 // Initialise the Level
 void Level::init(Unit* PC) {
 	LevelID = 0;
@@ -195,6 +200,11 @@ void Level::update() {
 
 	for (size_t i = 0; i < UM->LevelUnits.size(); i++) {
 		UM->LevelUnits[i]->Update();
+
+		// Remove unit if killed
+		if (UM->LevelUnits[i]->curr_HP <= 0) {
+			UM->RemoveUnit(i);
+		}
 	}
 
 }
