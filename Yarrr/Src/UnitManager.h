@@ -1,5 +1,4 @@
 #pragma once
-class Weapon;
 class Unit;
 
 #include "WindowRenderer.h"

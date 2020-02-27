@@ -21,9 +21,11 @@ void Weapon::render()
 
 void Weapon::PrimaryAttack(int PlayerIndex, Map *lvlMap, UnitManager *U)
 {
-	int x, y;
+	int x, y, count, TargetIndex, ATK, DEF, DMG;
+
 	// Adjacent tiles
-	int adjtiles[4] = { 0,0,0,0 }; // UP DOWN LEFT RIGHT
+	vector<int > adjtiles{ 0, 0, 0, 0 };
+	// int adjtiles[4] = { 0,0,0,0 }; // UP DOWN LEFT RIGHT
 
 	// Position
 	x = U->LevelUnits[PlayerIndex]->xpos;
@@ -55,8 +57,48 @@ void Weapon::PrimaryAttack(int PlayerIndex, Map *lvlMap, UnitManager *U)
 			}
 		}
 ////////////////////////////////////////////////////////////////////////
-		cout << adjtiles[3] << endl;
 		// Choose unit to attack
+		count = 0;
+		for (size_t i = 0; i < adjtiles.size(); i++) {
+			if (adjtiles[i] > 0) {
+				count += 1;
+			}
+		}
+
+
+		if (count == 1) {
+			TargetIndex = 0;
+			// Find target index
+			for (size_t i = 0; i < adjtiles.size(); i++) {
+				TargetIndex += adjtiles[i];
+			}
+
+			// Attack Logic
+
+			// Calculate player attack
+			ATK = U->LevelUnits[PlayerIndex]->ATK;
+			ATK += U->LevelUnits[PlayerIndex]->UnitWeapon->ATK;
+
+			// Calculate target's defense
+			DEF = U->LevelUnits[TargetIndex]->DEF;
+			DEF = U->LevelUnits[TargetIndex]->UnitWeapon->DEF;
+
+			// Calculate damage based off this
+			// TODO - more interesting formula, introduce some randomness
+			DMG = ATK - DEF;
+
+			// losehp
+			U->LevelUnits[TargetIndex]->loseHP(DMG);
+
+
+
+		}
+		else if (count > 1) {
+			// Selection process
+		
+		}
+
+		cout << count << endl;
 
 		// Trigger attack
 

@@ -21,12 +21,14 @@ public:
 	// Function to display HP bar
 	void showHP();
 	Weapon* UnitWeapon;
-protected:
+
 	// Units have stats i.e. health, mana etc
 	int maxHP;
 	int curr_HP;
 	int ATK;
 	int DEF;
+protected:
+
 
 
 private:

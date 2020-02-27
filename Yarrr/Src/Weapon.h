@@ -24,9 +24,11 @@ public:
 	WeaponType myWeapon;
 
 
-protected:
 	// Stats provided
 	int ATK, DEF, HP;
+
+
+protected:
 
 private:
 };
